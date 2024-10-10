@@ -1,0 +1,7 @@
+dbt_project:
+  outputs:
+    dev:
+      type: duckdb
+      path: '/brightwheel-take-home/dbt_project.duckdb'
+      schema: main
+  target:
