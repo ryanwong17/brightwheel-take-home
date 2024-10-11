@@ -15,7 +15,7 @@ SELECT
     county AS county,
     state AS state,
     zip AS zip,
-    REGEXP_REPLACE(phone, '[^0-9]', '', 'g') AS phone,
+    REGEXP_REPLACE(phone, '[^0-9]', '', 'g') AS phone, --reduce to only numbers
     "Issue Date" AS license_issued_date,
     operation AS license_number,
     type AS license_type,

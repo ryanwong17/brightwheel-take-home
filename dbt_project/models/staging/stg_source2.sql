@@ -32,12 +32,12 @@ SELECT
     city AS city,
     state AS state,
     zip AS zip,
-    REGEXP_REPLACE(phone, '[^0-9]', '', 'g') AS phone,
+    REGEXP_REPLACE(phone, '[^0-9]', '', 'g') AS phone, --reduce to only numbers
     CASE
         WHEN "Accepts Subsidy" = 'Accepts Subsidy' THEN TRUE
         ELSE FALSE
     END AS accepts_financial_aid,
-    SUBSTRING("License Monitoring Since" FROM POSITION('Monitoring since ' IN "License Monitoring Since") + LENGTH('Monitoring since ')) AS license_issued_date,
+    SUBSTRING("License Monitoring Since" FROM POSITION('Monitoring since ' IN "License Monitoring Since") + LENGTH('Monitoring since ')) AS license_issued_date, --date is after "Monitoring since"
     SPLIT_PART("Type License",' - ',2) AS license_number,
     SPLIT_PART("Type License",' - ',1) AS license_type,
     CASE

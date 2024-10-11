@@ -41,6 +41,7 @@ SELECT
     preschool_age_served,
     school_age_served,
     capacity,
+    --calculating min_age and max_age here instead of stg files to be DRY
      CASE
         WHEN infant_age_served THEN 0
         WHEN toddler_age_served THEN 1

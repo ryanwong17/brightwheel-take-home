@@ -25,7 +25,6 @@ SELECT
         THEN NULL
         ELSE split_part(full_name,' ',-1) --else populate the last name
     END AS last_name,
---    email,
     "Primary Contact Role" AS title,
     address AS full_address,
     county AS county,
