@@ -18,6 +18,8 @@ a bit easier, namely utilizing external stages and tables, if we chose to use Sn
 
 I would orchestrate this with Airflow, and store the airflow run date in each `stg_source` table.
 
+The dbt models would be orchestrated via standalone Airflow or other similar tools like Dagster and Cosmos on Airflow.
+
 # Trade-offs
 - source_file fields in the staging tables would be dynamic and not hardcoded
 - I would spend extra time parsing first and last names, and parsing address on source1. Zip is the most important thing to parse, 
@@ -26,6 +28,7 @@ because I would probably just use a publicly available zip code lookup dataset t
 - Documentation would be more extensive
 - The logic for fct_leads_hist is unrefined. Ideally we'd not populate a new row for the same lead. However, we should still be able to query this table and 
 answer the question of "how many duplicate leads did we get from a file"
+- Spend time creating a schedule column. 
 
 
 
