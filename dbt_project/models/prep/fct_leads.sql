@@ -40,7 +40,20 @@ SELECT
     toddler_age_served,
     preschool_age_served,
     school_age_served,
-    capacity
+    capacity,
+     CASE
+        WHEN infant_age_served THEN 0
+        WHEN toddler_age_served THEN 1
+        WHEN preschool_age_served THEN 2
+        WHEN school_age_served THEN 5
+    END AS min_age_served,
+    CASE
+        WHEN school_age_served THEN 5
+        WHEN preschool_age_served THEN 2
+        WHEN toddler_age_served THEN 1
+        WHEN infant_age_served THEN 0
+    END AS max_age_served,
+    facility_type
  FROM
     unioned_cte
 

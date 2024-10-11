@@ -7,8 +7,8 @@ The date the file is received is added in these tables.
 This table will contain all columns across all source staging tables. It utilizes the `union_relations` macro to manage
 differing column coverage across staging tables. This is also an incremental model. We will load new leads into Salesforce based on the file_loaded_at column.
 ## Downstream analytics layer table that provides a history of each lead `fct_leads_hist`
-This table builds off `fct_leads` and tracks the history of each lead. We also add in the salesforce loaded at date, based on a join to a theoretical salesforce source table that was generated
-through the loading of the previous table into salesforce.
+This table builds off `fct_leads` and tracks the history of each lead. We also add in the Salesforce loaded at date, and the lead_status, based on a join to a theoretical Salesforce source table that was generated
+through the loading of the previous table into Salesforce.
 
 # ELT / ETL Notes
 

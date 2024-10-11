@@ -72,7 +72,12 @@ SELECT
         THEN TRUE
         ELSE FALSE
     END AS school_age_served,
-    "Total Cap" AS capacity
+    "Total Cap" AS capacity,
+     CASE
+        WHEN LOWER(license_type) = 'child care family' then 'Home'
+        WHEN LOWER(license_type) = 'child care center' then 'Center'
+        ELSE 'Other'
+    END as facility_type
 
 FROM
     {{ ref('source2') }}

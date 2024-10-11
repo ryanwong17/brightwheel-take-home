@@ -4,6 +4,7 @@ SELECT
     '2024-10-10' AS salesforce_loaded_date, --hard coded for now, but this would come from a join to the salesforce source data on the lead id to get the date it was loaded into salesforce
     file_loaded_at::DATE AS effective_start_date,
     LEAD(effective_start_date,1) OVER (PARTITION BY lead_id) - 1 AS effective_end_date, --find the next file load date, if it doesn't exist, populate null
+    'Working' AS lead_status, --hard coded for now, would get this from Salesforce in a production environment
     company,
     full_name,
     first_name,
@@ -27,6 +28,9 @@ SELECT
     toddler_age_served,
     preschool_age_served,
     school_age_served,
-    capacity
+    min_age_served,
+    max_age_served,
+    capacity,
+    facility_type
 FROM
     {{ ref('fct_leads') }}

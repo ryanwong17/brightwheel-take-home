@@ -35,7 +35,12 @@ SELECT
     "First Issue Date" AS license_issued_date,
     "Expiration Date" AS license_expiration_date,
     "Credential Number" AS license_number,
-    "Credential Type" AS license_type
+    "Credential Type" AS license_type,
+    CASE
+        WHEN LOWER("Credential Type") IN ('center','center (provisional)') then 'Center'
+        WHEN LOWER("Credential Type") = 'family care' then 'Home'
+        ELSE 'Other'
+    END as facility_type
 
 FROM
     {{ ref('source1') }}

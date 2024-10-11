@@ -22,7 +22,12 @@ SELECT
     CASE WHEN infant = 'Y' THEN TRUE ELSE FALSE END AS infant_age_served,
     CASE WHEN toddler = 'Y' THEN TRUE ELSE FALSE END AS toddler_age_served,
     CASE WHEN preschool = 'Y' THEN TRUE ELSE FALSE END AS preschool_age_served,
-    CASE WHEN school = 'Y' THEN TRUE ELSE FALSE END AS school_age_served
+    CASE WHEN school = 'Y' THEN TRUE ELSE FALSE END AS school_age_served,
+     CASE
+        WHEN LOWER(type) = 'licensed child-care home' then 'Home'
+        WHEN LOWER(type) = 'licensed center - child care program' then 'Center'
+        ELSE 'Other'
+    END as facility_type
 FROM
     {{ ref('source3') }}
 

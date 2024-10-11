@@ -2,13 +2,18 @@ version: 2
 
 models:
   - name: fct_leads_hist
-    description: This table combines source specific staging tables into a single table.
-
+    description: This table presents the history of leads. Think of it as a type 2 dimension where we can use the effective_start_date and effective_end_date to tell us what the status of a lead was at a specific point in time
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - lead_id
+            - effective_start_date
     columns:
       - name: lead_id
         description: This is a unique identifier for a lead. It is a hash of phone number and address.
-        tests:
-          - unique:
-              config:
-                severity: warn #warn if there are multiple leads. We don't want to stop the presses. Will tell us that new source files contain the same leads we already have, or if there are duplicates.
-          - not_null
+      - name: effective_start_date
+        description: The date that the row is effective
+      - name: effective_end_date
+        description: The end date that the row was effective
+      - name: salesforce_loaded_date
+        description: The date that the lead was loaded into Salesforce
