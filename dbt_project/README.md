@@ -22,13 +22,13 @@ The dbt models would be orchestrated via standalone Airflow or other similar too
 
 # Trade-offs
 - source_file fields in the staging tables would be dynamic and not hardcoded
-- I would spend extra time parsing first and last names, and parsing address on source1. Zip is the most important thing to parse, 
+- Spend extra time parsing first and last names, and parsing address on source1. Zip is the most important thing to parse, 
 because I would probably just use a publicly available zip code lookup dataset to extract the city and county information.
 - Spend some extra time normalizing the dates to a consistent format
 - Documentation would be more extensive
 - The logic for fct_leads_hist is unrefined. Ideally we'd not populate a new row for the same lead. However, we should still be able to query this table and 
 answer the question of "how many duplicate leads did we get from a file"
-- Spend time creating a schedule column. 
+- Spend time creating a schedule column
 
 
 
